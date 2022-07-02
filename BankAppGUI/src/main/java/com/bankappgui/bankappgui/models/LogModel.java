@@ -1,0 +1,115 @@
+package com.bankappgui.bankappgui.models;
+
+import javafx.beans.property.ReadOnlyDoubleWrapper;
+import javafx.beans.value.ObservableDoubleValue;
+import javafx.collections.ObservableList;
+
+import java.io.*;
+import java.math.BigDecimal;
+import java.util.Arrays;
+
+public class LogModel {
+    private ObservableList<String> log;
+
+    public ObservableList<String> getLog() {
+        return log;
+    }
+
+    public void setLog(ObservableList<String> log) {
+        this.log = log;
+    }
+
+    public void logDeposit(BigDecimal amount, ObservableDoubleValue bal, ObservableDoubleValue total){
+        this.log.add("Old Balance: ($"+bal+")  Deposit of $"+amount+"   New Balance: ($"+total+")\n");
+    }
+
+    public void logWithdraw(BigDecimal amount,ObservableDoubleValue bal,ObservableDoubleValue total){
+        this.log.add("Old Balance: ($"+bal+")  Withdraw of $"+amount+"   New Balance: ($"+total+")\n");
+    }
+
+    public void showLog(){
+        System.out.println(Arrays.toString(this.log.toArray()).replace("[","").replace("]","").replace(",",""));
+    }
+
+    public void printLog() throws IOException {
+        FileWriter writer = new FileWriter("TransactionLog.txt");
+        writer.write("Transaction Log for 'Praise The Sun Banking'\n");
+        writer.write("-----------------------------------------------------\n");
+        for(String str: this.log) {
+            writer.write(str);
+        }
+        writer.close();
+        System.out.println("Successfully printed transaction log to output file titled 'TransactionLog.txt'");
+    }
+
+    //Function that will read an input log and update current log along with account balance
+    public ObservableDoubleValue readLog(File inFile) {
+        String oldBString, newBString, amtString;
+        int oldBIndex, amtIndex, newBIndex, temp1, temp2, temp3;   //Hold string index of values
+        Boolean logCheck1 = false, logCheck2 = false, logCheck3 = false; //Bools to check validness of transaction log
+        ObservableDoubleValue importBal = null;
+
+        //Record value after 1st '$', find 'D' or 'W' to determine transaction type, record value after 2nd '$'
+        BigDecimal newBal = null;
+        try (BufferedReader br = new BufferedReader(new FileReader(inFile))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                //Check if file is a certified transaction log
+                if (line.contains("Transaction Log for 'Praise The Sun Banking")) {
+                    logCheck1 = true;
+                }
+                if (line.contains("-----------------------------------------------------")) {
+                    logCheck2 = true;
+                }
+
+                if (logCheck3) {
+                    //Read the balances
+                    oldBIndex = line.indexOf("$");
+                    temp1 = line.indexOf(")");
+                    amtIndex = line.indexOf("$", oldBIndex + 1);
+                    temp2 = line.indexOf(" ", amtIndex);
+                    newBIndex = line.lastIndexOf("$");
+                    temp3 = line.lastIndexOf(")");
+                    oldBString = line.substring(oldBIndex + 1, temp1);
+                    amtString = line.substring(amtIndex + 1, temp2);
+                    newBString = line.substring(newBIndex + 1, temp3);
+
+                    //Convert string values to big decimal
+                    BigDecimal oldBal = new BigDecimal(oldBString);
+                    newBal = new BigDecimal(newBString);
+                    BigDecimal amt = new BigDecimal(amtString);
+
+
+                    //Determine transaction type
+                    if (line.indexOf('D') > -1) {
+                        this.log.add("Old Balance: ($" + oldBal + ")  Deposit of $" + amt + "   New Balance: ($" + newBal + ")\n");
+                    } else if (line.indexOf('W') > -1) {
+                        this.log.add("Old Balance: ($" + oldBal + ")  Withdrawal of $" + amt + "   New Balance: ($" + newBal + ")\n");
+                    }
+                }
+                //If the file has the valid header of a transaction log
+                if(logCheck1 && logCheck2){
+                    logCheck3 = true;
+                }
+
+            }
+            //If file wasn't a certified transaction log display error
+            if (!logCheck1 && !logCheck2) {
+                System.out.println("The entered file was not a valid transaction log");
+            }
+            else if(logCheck1 && logCheck2){
+                //Confirm successful import of log
+                System.out.println("Successfully imported transaction log");
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //Return the input file current balance
+        importBal = new ReadOnlyDoubleWrapper(newBal.doubleValue());
+        return importBal;
+    }
+}

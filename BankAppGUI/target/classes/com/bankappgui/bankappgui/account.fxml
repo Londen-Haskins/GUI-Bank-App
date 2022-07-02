@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<?import javafx.geometry.Insets?>
+<?import com.sun.javafx.scene.control.DoubleField?>
+<GridPane xmlns:fx="http://javafx.com/fxml"
+          fx:controller="com.bankappgui.bankappgui.controllers.AccountController"
+          prefHeight="400.0" prefWidth="600.0">
+
+    <padding>
+        <Insets bottom="10.0" left="15.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <Text fx:id="currentBalField" text="{currentBalField.text}"
+         GridPane.columnIndex="0" GridPane.rowIndex="0"
+         GridPane.columnSpan="2"/>
+    <Button text="Deposit" onAction="#depositAmt"
+            GridPane.columnIndex="0" GridPane.rowIndex="1"
+            GridPane.columnSpan="1"/>
+    <Button text="Witdraw" onAction="#withdrawAmt"
+            GridPane.columnIndex="1" GridPane.rowIndex="1"
+            GridPane.columnSpan="1"/>
+    <Label fx:id="amtHeader"
+           GridPane.columnIndex="0" GridPane.rowIndex="3"
+           GridPane.columnSpan="2"/>
+    <TextField fx:id="amtBox" GridPane.columnIndex="0" GridPane.rowIndex="4"
+                 GridPane.columnSpan="2"/>
+    <Button fx:id="amtButton" text="ENTER" onAction="#processOperation"
+            GridPane.columnIndex="0" GridPane.rowIndex="5"
+            GridPane.columnSpan="2"/>
+    <Button text="Return to Menu" onAction="#toMenu"
+            GridPane.columnIndex="3" GridPane.rowIndex="7"
+            GridPane.columnSpan="1"/>
+
+
+</GridPane>
