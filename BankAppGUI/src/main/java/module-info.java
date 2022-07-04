@@ -1,6 +1,7 @@
 module com.bankappgui.bankappgui {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.desktop;
 
 
     opens com.bankappgui.bankappgui to javafx.fxml;

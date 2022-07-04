@@ -64,6 +64,7 @@ public class AccountController {
         if(opType == 0){
             //If the deposit was valid
             if(globalData.getAccount().deposit(amtBoxValue)){
+                globalData.getLog().logDeposit(amtBoxValue,curBal,globalData.getAccount().getBalance());
                 curBal = globalData.getAccount().getBalance();
                 currentBalField.setText("Current Balance: $"+curBal);
             }
@@ -74,6 +75,7 @@ public class AccountController {
         else{
             //If the withdrawal was valid
             if(globalData.getAccount().withdraw(amtBoxValue)){
+                globalData.getLog().logWithdraw(amtBoxValue,curBal,globalData.getAccount().getBalance());
                 curBal = globalData.getAccount().getBalance();
                 currentBalField.setText("Current Balance: $"+curBal);
             }

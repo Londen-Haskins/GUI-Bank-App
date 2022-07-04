@@ -20,6 +20,7 @@ public class BankApp extends Application {
     public void start(Stage stage) throws IOException {
         // Create the user account
         globalData.setAccount(new AccountModel(56.00));
+        globalData.setLog(new LogModel());
 
         var scene = new Scene(new Pane());
         ViewSwitch.setScene(scene);
