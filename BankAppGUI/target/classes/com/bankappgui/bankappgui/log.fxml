@@ -11,10 +11,13 @@
       </ListView>
    </center>
    <bottom>
-       <!---->
        <GridPane prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="BOTTOM_CENTER">
            <Button onAction="#toMenu" text="Return to Menu"
                    GridPane.columnIndex="3" GridPane.rowIndex="0"
+                   GridPane.columnSpan="1"
+           />
+           <Button onAction="#makeReport" text="Print Log"
+                   GridPane.columnIndex="5" GridPane.rowIndex="0"
                    GridPane.columnSpan="1"
            />
        </GridPane>
