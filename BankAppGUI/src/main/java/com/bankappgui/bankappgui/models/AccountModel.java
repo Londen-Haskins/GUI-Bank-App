@@ -1,15 +1,9 @@
 package com.bankappgui.bankappgui.models;
 
-import javafx.beans.binding.ObjectBinding;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ReadOnlyDoubleWrapper;
-import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.value.ObservableDoubleValue;
-import javafx.beans.value.ObservableNumberValue;
-import javafx.beans.value.ObservableValue;
 
-import java.math.BigDecimal;
 
 public class AccountModel {
     private DoubleProperty balance = new SimpleDoubleProperty();

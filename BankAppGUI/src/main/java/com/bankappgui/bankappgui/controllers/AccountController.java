@@ -3,10 +3,6 @@ package com.bankappgui.bankappgui.controllers;
 import com.bankappgui.bankappgui.GlobalData;
 import com.bankappgui.bankappgui.View;
 import com.bankappgui.bankappgui.ViewSwitch;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.value.ObservableDoubleValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -14,9 +10,6 @@ import javafx.scene.control.*;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
-import java.lang.reflect.Field;
-import java.math.BigDecimal;
-import java.util.Observer;
 
 public class AccountController {
     @FXML private Text currentBalField;

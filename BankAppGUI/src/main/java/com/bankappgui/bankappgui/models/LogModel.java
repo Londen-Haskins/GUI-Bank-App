@@ -1,14 +1,9 @@
 package com.bankappgui.bankappgui.models;
 
-import javafx.beans.InvalidationListener;
-import javafx.beans.property.ReadOnlyDoubleWrapper;
-import javafx.beans.value.ObservableDoubleValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 
 import java.io.*;
-import java.math.BigDecimal;
 import java.util.*;
 
 public class LogModel {
@@ -84,10 +79,10 @@ public class LogModel {
                     amtString = line.substring(amtIndex + 1, temp2);
                     newBString = line.substring(newBIndex + 1, temp3);
 
-                    //Convert string values to big decimal
-                    BigDecimal oldBal = new BigDecimal(oldBString);
+                    //Convert string values to doubles
+                    double oldBal = Double.parseDouble(oldBString);
                     newBal = Double.parseDouble(newBString);
-                    BigDecimal amt = new BigDecimal(amtString);
+                    double amt = Double.parseDouble(amtString);
 
 
                     //Determine transaction type

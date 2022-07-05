@@ -1,12 +1,10 @@
 package com.bankappgui.bankappgui;
 
-import com.bankappgui.bankappgui.controllers.AccountController;
-import com.bankappgui.bankappgui.controllers.LogController;
+
 import com.bankappgui.bankappgui.models.AccountModel;
 import com.bankappgui.bankappgui.models.LogModel;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -26,6 +24,7 @@ public class BankApp extends Application {
         ViewSwitch.setScene(scene);
         ViewSwitch.switchTo(View.MENU);
 
+        stage.setTitle("Praise The Sun Bank");
         stage.setScene(scene);
         stage.show();
     }
