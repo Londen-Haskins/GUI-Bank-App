@@ -28,9 +28,8 @@ public class AccountModel {
     }
 
     //Set Account balance
-    public void setBalance(BigDecimal balance) {
-        ObservableDoubleValue nBalance = (ObservableDoubleValue) balance;
-        this.balance = (SimpleDoubleProperty) nBalance;
+    public void setBalance(double balance) {
+        this.balance.set(balance);
     }
 
     //Deposit BigDecimal value to Account balance

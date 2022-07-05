@@ -39,8 +39,10 @@ public class LogModel {
         System.out.println("Log has been shown");
     }
 
-    public void printLog() throws IOException {
-        FileWriter writer = new FileWriter("TransactionLog.txt");
+    public void printLog(String nName) throws IOException {
+        nName = nName.concat(".txt");
+
+        FileWriter writer = new FileWriter(nName);
         writer.write("Transaction Log for 'Praise The Sun Banking'\n");
         writer.write("-----------------------------------------------------\n");
         for(String str: this.log) {
@@ -51,14 +53,14 @@ public class LogModel {
     }
 
     //Function that will read an input log and update current log along with account balance
-    public ObservableDoubleValue readLog(File inFile) {
+    public double readLog(File inFile) {
         String oldBString, newBString, amtString;
         int oldBIndex, amtIndex, newBIndex, temp1, temp2, temp3;   //Hold string index of values
         Boolean logCheck1 = false, logCheck2 = false, logCheck3 = false; //Bools to check validness of transaction log
-        ObservableDoubleValue importBal = null;
+        double importBal;
 
         //Record value after 1st '$', find 'D' or 'W' to determine transaction type, record value after 2nd '$'
-        BigDecimal newBal = null;
+        double newBal = 00.00;
         try (BufferedReader br = new BufferedReader(new FileReader(inFile))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -84,7 +86,7 @@ public class LogModel {
 
                     //Convert string values to big decimal
                     BigDecimal oldBal = new BigDecimal(oldBString);
-                    newBal = new BigDecimal(newBString);
+                    newBal = Double.parseDouble(newBString);
                     BigDecimal amt = new BigDecimal(amtString);
 
 
@@ -117,7 +119,7 @@ public class LogModel {
         }
 
         //Return the input file current balance
-        importBal = new ReadOnlyDoubleWrapper(newBal.doubleValue());
+        importBal = newBal;
         return importBal;
     }
 }
