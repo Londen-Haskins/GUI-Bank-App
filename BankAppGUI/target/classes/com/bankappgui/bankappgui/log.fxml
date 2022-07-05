@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bankappgui.bankappgui.controllers.LogController">
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.bankappgui.bankappgui.controllers.LogController">
 
    <center>
       <ListView fx:id="listView" prefHeight="200.0" prefWidth="300.0" BorderPane.alignment="CENTER">
@@ -16,10 +16,26 @@
                    GridPane.columnIndex="3" GridPane.rowIndex="0"
                    GridPane.columnSpan="1"
            />
-           <Button onAction="#makeReport" text="Print Log"
+           <Button onAction="#getPrintName" text="Print Log"
                    GridPane.columnIndex="5" GridPane.rowIndex="0"
                    GridPane.columnSpan="1"
            />
+           <Button onAction="#getReport" text="Import Log"
+                   GridPane.columnIndex="7" GridPane.rowIndex="0"
+                   GridPane.columnSpan="1"
+           />
+           <!--If user chooses to import or print a log, these become visible-->
+           <Label fx:id="logBoxHeader"
+                  GridPane.columnIndex="0" GridPane.rowIndex="2"
+                  GridPane.columnSpan="2"/>
+           <TextField fx:id="logNameBox" GridPane.columnIndex="0" GridPane.rowIndex="3"
+                      GridPane.columnSpan="2"/>
+           <Button fx:id="logEnter" text="ENTER" onAction="#checkFileName"
+                   GridPane.columnIndex="4" GridPane.rowIndex="3"
+                   GridPane.columnSpan="2"/>
+           <Button fx:id="printEnter" text="PRINT" onAction="#makeReport"
+                   GridPane.columnIndex="3" GridPane.rowIndex="3"
+                   GridPane.columnSpan="2"/>
        </GridPane>
    </bottom>
 

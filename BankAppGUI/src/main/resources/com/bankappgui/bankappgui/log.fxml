@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bankappgui.bankappgui.controllers.LogController">
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.bankappgui.bankappgui.controllers.LogController">
 
    <center>
       <ListView fx:id="listView" prefHeight="200.0" prefWidth="300.0" BorderPane.alignment="CENTER">
